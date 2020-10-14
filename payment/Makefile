@@ -1,7 +1,13 @@
-NAME = weaveworksdemos/payment
+NAME = bhanabshi/payment
 INSTANCE = payment
 
 .PHONY: default copy test
+
+build:
+	docker build --tag bhanbashi/payment .
+
+run:
+	docker run -it --rm bhanbashi/payment
 
 default: test
 
