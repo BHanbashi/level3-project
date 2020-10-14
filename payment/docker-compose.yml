@@ -4,8 +4,8 @@ services:
     payment:
         build: 
             context: .
-            dockerfile: docker/payment/Dockerfile
-        image: weaveworksdemos/payment
+            dockerfile: Dockerfile
+        image: bhanbashi/payment
         hostname: payment
         restart: always
         cap_drop:
