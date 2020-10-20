@@ -1,7 +1,7 @@
 NAME = weaveworksdemos/user
-DBNAME = weaveworksdemos/user-db
-INSTANCE = user
-TESTDB = weaveworkstestuserdb
+DBNAME = bhanbashi/user-db
+INSTANCE = bhanbashi/user
+TESTDB = bhanbashi/user-db
 OPENAPI = $(INSTANCE)-testopenapi
 GROUP = weaveworksdemos
 
@@ -38,15 +38,15 @@ coverprofile:
 	rm *.coverprofile
 
 
-dockerdev:
-	docker build -t $(INSTANCE)-dev .
+dockerservice:
+	docker build -t $(INSTANCE) .
 
-dockertestdb:
-	docker build -t $(TESTDB) -f docker/user-db/Dockerfile docker/user-db/
+dockerdb:
+	docker build -t $(DBNAME) -f docker/user-db/Dockerfile docker/user-db/
 
-dockerruntest: dockertestdb dockerdev
-	docker run -d --name my$(TESTDB) -h my$(TESTDB) $(TESTDB)
-	docker run -d --name $(INSTANCE)-dev -p 8084:8084 --link my$(TESTDB) -e MONGO_HOST="my$(TESTDB):27017" $(INSTANCE)-dev
+dockerrun: dockerdb dockerservice
+	docker run -d --name userdb -h userdb bhanbashi/user-db
+	docker run -d --name user -p 8084:8084 --link userdb -e MONGO_HOST="userdb:27017" bhanbashi/user
 
 docker:
 	docker build -t $(NAME) -f docker/user/Dockerfile-release .
