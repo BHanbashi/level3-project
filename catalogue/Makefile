@@ -1,5 +1,5 @@
-NAME = weaveworksdemos/catalogue
-DBNAME = weaveworksdemos/catalogue-db
+NAME = bhanbashi/catalogue
+DBNAME = bhanbashi/catalogue-db
 
 TAG=$(TRAVIS_COMMIT)
 
@@ -9,8 +9,13 @@ INSTANCE = catalogue
 
 default: test
 
-release:
+build:
 	docker build -t $(NAME) -f ./docker/catalogue/Dockerfile .
+	docker build -t $(DBNAME) -f ./docker/catalogue-db/Dockerfile .
+run:
+	docker run -t $(INSTANCE) -d --rm -p 8085:80 $(NAME)
+	docker run -d --name $(INSTANCE)db -h $(INSTANCE)db $(DBNAME)
+	docker run -d --name $(INSTANCE) -p 8085:80 --link $(INSTANCE)db -h "sockdb:-e MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=socksdb $(NAME)
 
 test: 
 	GROUP=weaveworksdemos COMMIT=test ./scripts/build.sh
