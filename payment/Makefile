@@ -7,7 +7,7 @@ build:
 	docker build --tag bhanbashi/payment .
 
 run:
-	docker run -it --rm -d -p 8082:80 bhanbashi/payment
+	docker run -it --rm -d --name payment -p 8082:80 bhanbashi/payment
 
 default: test
 
