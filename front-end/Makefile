@@ -31,7 +31,7 @@ server:
 		-e NODE_ENV=development \
 		-e PORT=8080            \
 		-p 8080:8080            \
-		--network test_default  \
+		#--network test_default  \#
 		$(IMAGE) /usr/local/bin/npm start
 
 # Removes the development container & image
@@ -41,7 +41,7 @@ clean:
 
 # Builds the Docker image used for running tests
 test-image:
-	@docker build -t $(IMAGE) -f test/Dockerfile .
+	@docker build -t $(IMAGE) -f Dockerfile .
 
 # Runs unit tests in Docker
 test: test-image
