@@ -3,7 +3,7 @@ DOCKER_IFLAG := $(if $(GITHUB_ACTIONS),"-i","-it")
 
 .PHONY: test coverage
 
-up: compose test-image deps server
+up:  test-image deps server
 
 down: kill-server kill-compose
 
@@ -24,14 +24,14 @@ deps:
 # Runs the Node.js application in a Docker container
 server:
 	@docker run               \
-		-d                      \
+		-d		\
 		--name $(IMAGE)     \
 		-v $$PWD:/usr/src/app   \
 		-P                      \
 		-e NODE_ENV=development \
 		-e PORT=8080            \
 		-p 8080:8080            \
-		#--network test_default  \#
+		--network test_default  \
 		$(IMAGE) /usr/local/bin/npm start
 
 # Removes the development container & image

@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.4.RELEASE</version>
+        <version>1.4.4.RELEASE</version>
     </parent>
 
     <properties>
@@ -37,6 +37,11 @@
             <artifactId>spring-cloud-starter-zipkin</artifactId>
             <version>1.1.0.RELEASE</version>
         </dependency>
+	<dependency>
+	    <groupId>javax.activation</groupId>
+	    <artifactId>javax.activation-api</artifactId>
+	    <version>1.2.0</version>
+	</dependency>
 	<!-- API, java.xml.bind module -->
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
@@ -50,13 +55,6 @@
             <artifactId>jaxb-runtime</artifactId>
             <version>2.3.2</version>
         </dependency>
-	<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-	<dependency>
-    	    <groupId>org.mockito</groupId>
-    	    <artifactId>mockito-core</artifactId>
-    	    <version>2.22.0</version>
-    	    <scope>test</scope>
-	</dependency>
         <dependency>
             <groupId>io.prometheus</groupId>
             <artifactId>simpleclient_spring_boot</artifactId>
@@ -87,6 +85,12 @@
             <version>1.50.5</version>
             <scope>test</scope>
         </dependency>
+	<dependency>
+    	    <groupId>org.mockito</groupId>
+   	    <artifactId>mockito-core</artifactId>
+   	    <version>2.22.0</version>
+    	    <scope>test</scope>
+	</dependency>
         <dependency>
             <groupId>com.openpojo</groupId>
             <artifactId>openpojo</artifactId>
@@ -98,49 +102,10 @@
     <build>
         <finalName>carts</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
-                <configuration>
-                    <includes>
-                        <include>**/Unit*.java</include>
-                    </includes>
-                    <excludes>
-                        <exclude>**/IT*.java</exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.18.1</version>
-                <configuration>
-                    <includes>
-                        <include>**/IT*.java</include>
-                    </includes>
-                    <excludes>
-                        <exclude>**/Unit*.java</exclude>
-                    </excludes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>4.2.0</version>
-            </plugin>
+	    <plugin>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-maven-plugin</artifactId>
+	    </plugin>
         </plugins>
     </build>
 
