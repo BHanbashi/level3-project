@@ -13,7 +13,6 @@ build:
 	docker build -t $(NAME) -f ./docker/catalogue/Dockerfile .
 	docker build -t $(DBNAME) -f ./docker/catalogue-db/Dockerfile .
 run:
-	#docker run -d -t --rm -p 8085:80 $(NAME)
 	docker run -d --name $(INSTANCE)db -h $(INSTANCE)db $(DBNAME)
 	docker run -d --name $(INSTANCE) -p 8085:80 --link $(INSTANCE)db $(NAME)
 
