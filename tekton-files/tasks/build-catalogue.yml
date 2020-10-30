@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: build-catalogue
-  namespace: test
+  namespace: tekton-pipelines
   labels:
     app.kubernetes.io/version: "0.1"
   annotations:
@@ -23,7 +23,7 @@ spec:
   - name: IMAGE
   - name: DOCKERFILE
     description: Path to the Dockerfile to build.
-    default: ./docker/catalogue/Dockerfile
+    default: ./Dockerfile
   - name: CONTEXT
     description: The build context used by Kaniko.
     default: ./
@@ -49,7 +49,7 @@ spec:
       find
 
   - name: build-and-push-db
-    workingDir: $(params.catalogueFolder)/docker/catalogue-db
+    workingDir: $(params.catalogueFolder)/docker/catalogue-db/
     image: $(params.BUILDER_IMAGE)
     env:
     - name: DOCKER_CONFIG

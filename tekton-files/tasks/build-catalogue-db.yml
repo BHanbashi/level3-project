@@ -39,7 +39,7 @@ spec:
 
   steps:
   - name: ls
-    workingDir: $(workspaces.source.path)/microservice/catalogue
+    workingDir: $(workspaces.source.path)/catalogue
     image: ubuntu
     script: |
       pwd 
@@ -48,7 +48,7 @@ spec:
       find
 
   - name: build-and-push
-    workingDir: $(workspaces.source.path)/microservice/catalogue
+    workingDir: $(workspaces.source.path)/catalogue
     image: $(params.BUILDER_IMAGE)
     env:
     - name: DOCKER_CONFIG
