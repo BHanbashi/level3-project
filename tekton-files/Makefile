@@ -14,9 +14,6 @@ docker-secret:
 set-namespace:
 	kubectl config set-context --current --namespace=tekton-pipelines
 
-apply-rbac:
-	kubectl apply -f rbac/
-
 apply-resource:
 	kubectl apply -f resource/
 
@@ -25,77 +22,87 @@ apply-tasks:
 
 apply-pipelines: carts catalogue frontend orders payment queue-master shipping user
 
-rm-all: rm-tasks rm-pipelines
+delete-all: delete-tasks delete-pipelines
 
-rm-pipelines: rm-carts rm-catalogue rm-frontend rm-orders rm-payment rm-queue-master rm-shipping rm-user
+delete-pipelines: delete-carts delete-catalogue delete-frontend delete-orders delete-payment delete-queue-master delete-shipping delete-user
 
-rm-tasks:
+delete-tasks:
 	kubectl delete -f tasks/
 
 ls-test:
 	kubectl get all -n test
 
 ls-prod:
-	kubectl get all -n prod
+	kubectl get all -n production
 
-rm-test:
+delete-test:
 	kubectl delete all --all -n test
-	kubectl delete ingress socks-ingress -n test || true
+	#kubectl delete ingress socks-ingress -n test || true
 
-rm-prod:
-	kubectl delete all --all -n prod 
-	kubectl delete ingress socks-ingress -n prod || true
-
-ls:
-	tkn t ls
-	tkn pr ls
-pr:
-	tkn pr logs -f
+delete-prod:
+	kubectl delete all --all -n production 
+	#kubectl delete ingress socks-ingress -n production || true
 
 catalogue:
-	kubectl apply -f run-catalogue-pipeline.yml
-
-rm-catalogue:
-	kubectl delete -f run-catalogue-pipeline.yml || true
+	kubectl apply -f ./pipelines/run-catalogue-pipeline.yml
+	kubectl apply -f ./pipelineRuns/run-catalogue-pipeline.yml
+delete-catalogue:
+	kubectl delete -f ./pipelineRuns/run-catalogue-pipeline.yml || true
+	kubectl delete -f ./pipelines/run-catalogue-pipeline.yml || true
 
 frontend:
-	kubectl apply -f run-frontend-pipeline.yml
+	kubectl apply -f ./pipelines/run-frontend-pipeline.yml
+	kubectl apply -f ./pipelineRuns/run-frontend-pipeline.yml
 
-rm-frontend:
-	kubectl delete -f run-frontend-pipeline.yml || true
+delete-frontend:
+	kubectl delete -f ./pipelineRuns/run-frontend-pipeline.yml || true
+	kubectl delete -f ./pipelines/run-frontend-pipeline.yml || true
 
 user:
-	kubectl apply -f run-user-pipeline.yml
+	kubectl apply -f ./pipelines/run-user-pipeline.yml
+	kubectl apply -f ./pipelineRuns/run-user-pipeline.yml
 
-rm-user:
-	kubectl delete -f run-user-pipeline.yml || true
+delete-user:
+	kubectl delete -f ./pipelineRuns/run-user-pipeline.yml || true
+	kubectl delete -f ./pipelines/run-user-pipeline.yml || true
 
 orders:
-	kubectl apply -f run-orders-pipeline.yml
+	kubectl apply -f ./pipelines/run-orders-pipeline.yml
+	kubectl apply -f ./pipelineRuns/run-orders-pipeline.yml
 
-rm-orders:
-	kubectl delete -f run-orders-pipeline.yml || true
+delete-orders:
+	kubectl delete -f ./pipelineRuns/run-orders-pipeline.yml || true
+	kubectl delete -f ./pipelines/run-orders-pipeline.yml || true
 
 carts:
-	kubectl apply -f run-carts-pipeline.yml
+	kubectl apply -f ./pipelines/run-carts-pipeline.yml
+	kubectl apply -f ./pipelineRuns/run-carts-pipeline.yml
 
-rm-carts:
-	kubectl delete -f run-carts-pipeline.yml || true
+delete-carts:
+	kubectl delete ./pipelineRuns/run-carts-pipeline.yml || true
+	kubectl delete ./pipelines/run-carts-pipeline.yml || true
 
 payment:
-	kubectl apply -f run-payment-pipeline.yml
+	kubectl apply -f ./pipelines/run-payment-pipeline.yml
+	kubectl apply -f ./pipelineRuns/run-payment-pipeline.yml
 
-rm-payment:
-	kubectl delete -f run-payment-pipeline.yml || true
+delete-payment:
+	kubectl delete -f ./pipelineRuns/run-payment-pipeline.yml || true
+	kubectl delete -f ./pipelines/run-payment-pipeline.yml || true
 
 shipping:
-	kubectl apply -f run-shipping-pipeline.yml
+	kubectl apply -f ./pipelines/run-shipping-pipeline.yml
+	kubectl apply -f ./pipelineRuns/run-shipping-pipeline.yml
 
-rm-shipping:
-	kubectl delete -f run-shipping-pipeline.yml || true
+delete-shipping:
+	kubectl delete -f ./pipelineRuns/run-shipping-pipeline.yml || true
+	kubectl delete -f ./pipelines/run-shipping-pipeline.yml || true
 
 queue-master:
-	kubectl apply -f run-queue-master-pipeline.yml
+	kubectl apply -f ./pipelines/run-queue-master-pipeline.yml
+	kubectl apply -f ./pipelineRuns/run-queue-master-pipeline.yml
 
-rm-queue-master:
-	kubectl delete -f run-queue-master-pipeline.yml || true
+delete-queue-master:
+	kubectl delete -f ./pipelineRuns/run-queue-master-pipeline.yml || true
+	kubectl delete -f ./pipelines/run-queue-master-pipeline.yml || true
+
