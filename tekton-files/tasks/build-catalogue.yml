@@ -66,7 +66,7 @@ spec:
 
 
   - name: build-and-push
-    workingDir: $(params.catalogueFolder)
+    workingDir: $(params.catalogueFolder)/docker/catalogue/
     image: $(params.BUILDER_IMAGE)
     env:
     - name: DOCKER_CONFIG

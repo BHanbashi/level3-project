@@ -5,7 +5,8 @@ WORKDIR /tmp
 copy src /tmp/src
 copy pom.xml /tmp/
 
-run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared mvn clean package
+#run --mount=type=cache,id=maven,target=/root/.m2,sharing=shared
+RUN mvn clean package
 
 from adoptopenjdk/openjdk11:alpine
 
