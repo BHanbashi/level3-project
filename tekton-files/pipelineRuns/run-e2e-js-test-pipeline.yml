@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: run-e2e-js-test-pipeline
+  namespace: tekton-pipelines
+spec:
+  serviceAccountName: admin
+  pipelineRef:
+    name: e2e-js-test-pipeline
+  params:
+  - name: image
+    value: bhanbashi/e2e-js-test
+  workspaces:
+  - name: shared-workspace
+    persistentvolumeclaim:
+      claimName: e2e-js-test-pvc
+

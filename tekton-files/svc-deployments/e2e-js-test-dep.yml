@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e2e-js-test
+  labels:
+    app: e2e-js-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: e2e-js-test
+  template:
+    metadata:
+      labels:
+        app: e2e-js-test
+    spec:
+      containers:
+      - name: e2e-js-test
+        image: bhanbashi/e2e-js-test
+        ports:
+        - containerPort: 80
