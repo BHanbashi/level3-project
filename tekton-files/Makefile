@@ -1,5 +1,11 @@
 
-up: create-secret apply-rbac apply-resource apply-tasks apply-pipelines
+up: start-infra-platform set-namespace create-secret apply-resource apply-tasks apply-pipelines
+
+down:
+	make down -f ../../k8s-sandbox/Makefile
+
+start-infra-platform:
+	make up install-cicd install-monitoring install-logging  -f ../../k8s-sandbox/Makefile
 
 create-secret: login docker-secret
 
@@ -20,7 +26,7 @@ apply-resource:
 apply-tasks:
 	kubectl apply -f tasks/
 
-apply-pipelines: carts catalogue frontend orders payment queue-master shipping user
+apply-pipelines: carts frontend orders payment queue-master shipping user catalogue
 
 delete-all: delete-tasks delete-pipelines
 
