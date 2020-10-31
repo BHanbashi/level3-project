@@ -1,0 +1,25 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: deploy-e2e-js-test
+  namespace: tekton-pipelines
+spec:
+  params:
+    - name: namespace
+
+  workspaces:
+  - name: source
+
+  steps:
+    - name: deploy
+      workingDir: $(workspaces.source.path)/tekton-files/svc-deployments
+      image: lachlanevenson/k8s-kubectl
+      command: ["kubectl"]
+      args:
+        - "apply"
+        - "-f"
+        - "e2e-js-test-dep.yml"
+        - "-f"
+        - "e2e-js-test-svc.yml"
+        - "-n"
+        - "$(params.namespace)"
