@@ -1,22 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-db
+  name: payment
   labels:
-    app: user-db
+    app: payment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-db
+      app: payment
   template:
     metadata:
       labels:
-        app: user-db
+        app: payment
     spec:
       containers:
-      - name: user-db
-        image: abdul125/user-db
+      - name: payment
+        image: bhanbashi/payment
         ports:
-        - name: mongo
-          containerPort: 27017
+        - containerPort: 80

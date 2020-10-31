@@ -52,7 +52,7 @@ spec:
     spec:
       containers:
       - name: carts
-        image: abdul125/carts
+        image: bhanbashi/carts
         ports:
          - containerPort: 80
         env:
@@ -92,7 +92,7 @@ spec:
     spec:
       containers:
       - name: catalogue-db
-        image: abdul125/catalogue-db
+        image: bhanbashi/catalogue-db
         env:
           - name: MYSQL_ROOT_PASSWORD
             value: fake_password
@@ -133,7 +133,7 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: abdul125/catalogue
+        image: bhanbashi/catalogue
         ports:
         - containerPort: 80
 ---
@@ -166,7 +166,7 @@ spec:
     spec:
       containers:
       - name: front-end
-        image: abdul125/front-end
+        image: bhanbashi/front-end
         resources:
           requests:
             cpu: 100m
@@ -243,7 +243,7 @@ spec:
     spec:
       containers:
       - name: orders
-        image: abdul125/orders
+        image: bhanbashi/orders
         env:
          - name: ZIPKIN
            value: zipkin.jaeger.svc.cluster.local
@@ -283,7 +283,7 @@ spec:
     spec:
       containers:
       - name: payment
-        image: abdul125/payment
+        image: bhanbashi/payment
         ports:
         - containerPort: 80
 ---
@@ -318,7 +318,7 @@ spec:
     spec:
       containers:
       - name: queue-master
-        image: abdul125/queue-master
+        image: bhanbashi/queue-master
         ports:
         - containerPort: 80
 ---
@@ -390,7 +390,7 @@ spec:
     spec:
       containers:
       - name: shipping
-        image: abdul125/shipping
+        image: bhanbashi/shipping
         env:
          - name: ZIPKIN
            value: zipkin.jaeger.svc.cluster.local
@@ -430,7 +430,7 @@ spec:
     spec:
       containers:
       - name: user-db
-        image: abdul125/user-db
+        image: bhanbashi/user-db
         ports:
         - name: mongo
           containerPort: 27017
@@ -466,7 +466,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: abdul125/user
+        image: bhanbashi/user
         ports:
         - containerPort: 80
         env:

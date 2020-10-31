@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: queue-master
-        image: abdul125/queue-master
+        image: bhanbashi/queue-master
         ports:
         - containerPort: 80

@@ -1,24 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user
+  name: catalogue
   labels:
-    app: user
+    app: catalogue
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user
+      app: catalogue
   template:
     metadata:
       labels:
-        app: user
+        app: catalogue
     spec:
       containers:
-      - name: user
-        image: abdul125/user
+      - name: catalogue
+        image: bhanbashi/catalogue
         ports:
         - containerPort: 80
-        env:
-        - name: MONGO_HOST
-          value: user-db:27017

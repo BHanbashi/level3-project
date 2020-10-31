@@ -1,21 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: payment
+  name: user
   labels:
-    app: payment
+    app: user
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: payment
+      app: user
   template:
     metadata:
       labels:
-        app: payment
+        app: user
     spec:
       containers:
-      - name: payment
-        image: abdul125/payment
+      - name: user
+        image: bhanbashi/user
         ports:
         - containerPort: 80
+        env:
+        - name: MONGO_HOST
+          value: user-db:27017

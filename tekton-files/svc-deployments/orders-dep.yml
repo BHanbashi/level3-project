@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: shipping
+  name: orders
   labels:
-    app: shipping
+    app: orders
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: shipping
+      app: orders
   template:
     metadata:
       labels:
-        app: shipping
+        app: orders
     spec:
       containers:
-      - name: shipping
-        image: abdul125/shipping
+      - name: orders
+        image: bhanbashi/orders
         env:
          - name: ZIPKIN
            value: zipkin.jaeger.svc.cluster.local

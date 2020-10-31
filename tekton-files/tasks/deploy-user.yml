@@ -12,7 +12,7 @@ spec:
 
   steps:
     - name: deploy
-      workingDir: $(workspaces.source.path)/deploy
+      workingDir: $(workspaces.source.path)/tekton-files/svc-deployments
       image: lachlanevenson/k8s-kubectl
       command: ["kubectl"]
       args:
