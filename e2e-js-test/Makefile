@@ -7,7 +7,7 @@ test:
 	docker run -it --rm -v "$$(pwd)":/app -w /app node4 mocha test.js
 
 itest:
-	docker run -it --rm -v "$$(pwd)":/app -w /app node4 casperjs test *_test.js
+	docker run -it --rm --network project --cap-drop=all -v "$$(pwd)":/app -w /app node4 casperjs test *_test.js
 
 init:
 	docker run -it --rm -v "$$(pwd)":/app -w /app node4 npm init
