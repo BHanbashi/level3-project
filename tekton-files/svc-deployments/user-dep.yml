@@ -22,5 +22,5 @@ spec:
         env:
         - name: mongo
           value: user-db:27017
-    nodeSelector:
-      beta.kubernetes.io/os: linux
+      nodeSelector:
+        beta.kubernetes.io/os: linux
