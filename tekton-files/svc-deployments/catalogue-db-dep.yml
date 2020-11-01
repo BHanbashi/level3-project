@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: catalogue-db
-        image: bhanabshi/catalogue-db
+        image: bhanbashi/catalogue-db
         env:
           - name: MYSQL_ROOT_PASSWORD
             value: fake_password
