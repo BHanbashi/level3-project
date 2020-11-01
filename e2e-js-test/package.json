@@ -13,6 +13,7 @@
     "http": "0.0.1-security",
     "request": "^2.88.2",
     "sinon": "^9.2.0"
+    "mongodb": "^3.6.2"
   },
   "devDependencies": {
     "mocha": "^8.2.0"
