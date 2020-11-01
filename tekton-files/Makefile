@@ -1,7 +1,7 @@
 
 up: start-cluster install-platform set-namespace create-secret apply-resource apply-tasks apply-pipelines
 
-install-platform: namespaces install-cicd install-monitoring install-logging
+install-platform: namespaces install-cicd install-monitoring install-logging install-ingress
 
 down:
 	make down -f ../../k8s-sandbox/Makefile
@@ -11,6 +11,12 @@ start-cluster:
 
 namespaces:
 	kubectl apply -f ../../k8s-sandbox/platform/namespaces/namespaces.yaml
+
+install-ingress:
+	echo "Ingress: install" | tee -a output.log
+	kubectl apply -n ingress-nginx -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml | tee -a output.log
+	kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
+
 
 install-cicd:
 	echo "cicd: install" | tee -a output.log

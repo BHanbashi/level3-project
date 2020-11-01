@@ -23,4 +23,4 @@ spec:
         - name: mongo
           value: user-db:27017
     nodeSelector:
-        beta.kubernetes.io/os: linux
+      beta.kubernetes.io/os: linux
