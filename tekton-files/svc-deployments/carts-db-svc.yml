@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: carts-db
   labels:
-    app: carts-db
+    name: carts-db
 spec:
   ports:
   - port: 27017
     targetPort: 27017
   selector:
-    app: carts-db
+    name: carts-db

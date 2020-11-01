@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: catalogue-db
   labels:
-    app: catalogue-db
+    name: catalogue-db
 spec:
   ports:
   - port: 3306
     targetPort: 3306
   selector:
-    app: catalogue-db
+    name: catalogue-db

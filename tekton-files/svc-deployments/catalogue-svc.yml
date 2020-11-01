@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: catalogue
   labels:
-    app: catalogue
+    name: catalogue
 spec:
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: catalogue
+    name: catalogue

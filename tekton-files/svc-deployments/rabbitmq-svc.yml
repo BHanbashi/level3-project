@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: rabbitmq
   labels:
-    app: rabbitmq
+    name: rabbitmq
 spec:
   ports:
   - port: 5672
@@ -14,4 +14,4 @@ spec:
     targetPort: exporter
     protocol: TCP
   selector:
-    app: rabbitmq
+    name: rabbitmq

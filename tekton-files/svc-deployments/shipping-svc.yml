@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: shipping
   labels:
-    app: shipping
+    name: shipping
 spec:
   ports:
   - port: 80
     targetPort: 80
   selector:
-    app: shipping
+    name: shipping

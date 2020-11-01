@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: user
   labels:
-    app: user
+    name: user
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user
+      name: user
   template:
     metadata:
       labels:
-        app: user
+        name: user
     spec:
       containers:
       - name: user
@@ -20,5 +20,7 @@ spec:
         ports:
         - containerPort: 80
         env:
-        - name: MONGO_HOST
+        - name: mongo
           value: user-db:27017
+    nodeSelector:
+        beta.kubernetes.io/os: linux

@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: user-db
   labels:
-    app: user-db
+    name: user-db
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-db
+      name: user-db
   template:
     metadata:
       labels:
-        app: user-db
+        name: user-db
     spec:
       containers:
       - name: user-db
@@ -20,3 +20,12 @@ spec:
         ports:
         - name: mongo
           containerPort: 27017
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-volume
+      volumes:
+        - name: tmp-volume
+          emptyDir:
+            medium: Memory
+      nodeSelector:
+        beta.kubernetes.io/os: linux

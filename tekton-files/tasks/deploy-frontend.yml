@@ -22,7 +22,7 @@ spec:
         - "-f"
         - "front-end-svc.yml"
         - "-f"
-        - "ingress.yml"
+        - "front-end-ingress.yml"
         - "-n"
         - "$(params.namespace)"
 

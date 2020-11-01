@@ -26,13 +26,12 @@ RUN	chmod +x /app && \
 	chown -R ${SERVICE_USER}:${SERVICE_GROUP} /app /images && \
 	setcap 'cap_net_bind_service=+ep' /app
 
-USER ${SERVICE_USER}
 
 ARG BUILD_DATE
 ARG BUILD_VERSION
 ARG COMMIT
 
-LABEL org.label-schema.vendor="BHanbashi" \
+LABEL org.label-schema.vendor="bhanbashi" \
   org.label-schema.build-date="${BUILD_DATE}" \
   org.label-schema.version="${BUILD_VERSION}" \
   org.label-schema.name="Socks Shop: Catalogue" \

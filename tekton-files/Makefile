@@ -141,4 +141,3 @@ queue-master:
 delete-queue-master:
 	kubectl delete -f ./pipelineRuns/run-queue-master-pipeline.yml || true
 	kubectl delete -f ./pipelines/queue-master-pipeline.yml || true
-
