@@ -20,5 +20,5 @@ LABEL org.label-schema.vendor="bhanbashi" \
   org.label-schema.vcs-url="github.com:microservices-demo/queue-master.git" \
   org.label-schema.schema-version="1.0"
 
-ENTRYPOINT ["/opt/java/openjdk/bin/java","-jar","./queue-master.jar", "--port=8080"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","/queue-master.jar", "--port=80"]
 

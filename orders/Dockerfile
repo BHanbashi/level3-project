@@ -9,7 +9,7 @@ RUN mvn clean package
 
 from adoptopenjdk/openjdk11:alpine
 
-COPY --from=build /tmp/target/orders.jar /orders.jar
+COPY --from=build "/tmp/target/*.jar" ./orders.jar
 run chmod a+rx ./orders.jar
 
 
@@ -21,5 +21,5 @@ LABEL org.label-schema.vendor="bhanbashi" \
   org.label-schema.vcs-ref="${COMMIT}" \
   org.label-schema.schema-version="1.0"
 
-ENTRYPOINT ["/opt/java/openjdk/bin/java","-jar","./orders.jar", "--port=8080"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom","-jar","./orders.jar", "--port=80"]
 

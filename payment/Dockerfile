@@ -1,17 +1,14 @@
-FROM golang:1.7 as build
+FROM golang:1.7
 
-RUN mkdir /app
-COPY . /go/src/github.com/microservices-demo/payment/
+COPY . /go/src/github.com/microservices-demo/payment
+WORKDIR /go/src/github.com/microservices-demo/payment
 
 RUN go get -u github.com/FiloSottile/gvt
-RUN cd /go/src/github.com/microservices-demo/payment/ && gvt restore
+RUN gvt restore && \
+    CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /app github.com/microservices-demo/payment/cmd/paymentsvc
 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /app/main github.com/microservices-demo/payment/cmd/paymentsvc
 
-
-FROM alpine:3.12
-
-COPY --from=build /app /app
+FROM alpine:3.4
 
 ENV	SERVICE_USER=myuser \
 	SERVICE_UID=10001 \
@@ -23,13 +20,26 @@ RUN	addgroup -g ${SERVICE_GID} ${SERVICE_GROUP} && \
 	apk add --update libcap
 
 WORKDIR /
-EXPOSE 80
+COPY --from=0 /app /app
 
-
-RUN	chmod a+rx /app && \
+RUN	chmod +x /app && \
 	chown -R ${SERVICE_USER}:${SERVICE_GROUP} /app && \
-	setcap 'cap_net_bind_service=+ep' /app/*
+	setcap 'cap_net_bind_service=+ep' /app
 
-USER ${SERVICE_USER}
+ARG BUILD_DATE
+ARG BUILD_VERSION
+ARG COMMIT
 
-CMD ["/app/main", "-port=80"]
+LABEL org.label-schema.vendor="BHanbashi" \
+  org.label-schema.build-date="${BUILD_DATE}" \
+  org.label-schema.version="${BUILD_VERSION}" \
+  org.label-schema.name="Socks Shop: Catalogue" \
+  org.label-schema.description="REST API for Catalogue service" \
+  org.label-schema.url="https://github.com/microservices-demo/catalogue" \
+  org.label-schema.vcs-url="github.com:microservices-demo/catalogue.git" \
+  org.label-schema.vcs-ref="${COMMIT}" \
+  org.label-schema.schema-version="1.0"
+
+CMD ["/app", "-port=80"]
+
+EXPOSE 80
