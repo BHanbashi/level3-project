@@ -3,19 +3,28 @@ kind: Deployment
 metadata:
   name: payment
   labels:
-    app: payment
+    name: payment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: payment
+      name: payment
   template:
     metadata:
       labels:
-        app: payment
+        name: payment
     spec:
       containers:
       - name: payment
         image: bhanbashi/payment
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 99m
+            memory: 100Mi
         ports:
         - containerPort: 80
+      nodeSelector:
+        beta.kubernetes.io/os: linux

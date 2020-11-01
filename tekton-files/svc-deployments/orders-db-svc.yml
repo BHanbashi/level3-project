@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: orders-db
   labels:
-    app: orders-db
+    name: orders-db
 spec:
   ports:
   - port: 27017
     targetPort: 27017
   selector:
-    app: orders-db
+    name: orders-db

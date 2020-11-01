@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: front-end
   labels:
-    app: front-end
+    name: front-end
 spec:
-  #type: NodePort
+  type: NodePort
   ports:
   - port: 80
     targetPort: 8079
-    nodePort: 30033
+    nodePort: 30001
   selector:
-    app: front-end
+    name: front-end

@@ -7,6 +7,11 @@ metadata:
 spec:
   ports:
   - port: 5672
+    name: rabbitmq
     targetPort: 5672
+  - port: 9090
+    name: exporter
+    targetPort: exporter
+    protocol: TCP
   selector:
     app: rabbitmq

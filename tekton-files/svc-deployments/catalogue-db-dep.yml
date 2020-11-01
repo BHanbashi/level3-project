@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   name: catalogue-db
   labels:
-    app: catalogue-db
+    name: catalogue-db
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: catalogue-db
+      name: catalogue-db
   template:
     metadata:
       labels:
-        app: catalogue-db
+        name: catalogue-db
     spec:
       containers:
       - name: catalogue-db
-        image: abdul125/catalogue-db
+        image: bhanabshi/catalogue-db
         env:
           - name: MYSQL_ROOT_PASSWORD
             value: fake_password
@@ -25,3 +25,5 @@ spec:
         ports:
         - name: mysql
           containerPort: 3306
+      nodeSelector:
+        beta.kubernetes.io/os: linux

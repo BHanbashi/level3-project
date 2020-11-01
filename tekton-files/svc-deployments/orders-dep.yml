@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: orders
   labels:
-    app: orders
+    name: orders
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: orders
+      name: orders
   template:
     metadata:
       labels:
-        app: orders
+        name: orders
     spec:
       containers:
       - name: orders
@@ -22,5 +22,21 @@ spec:
            value: zipkin.jaeger.svc.cluster.local
          - name: JAVA_OPTS
            value: -Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi
+          requests:
+            cpu: 200m
+            memory: 500Mi
         ports:
         - containerPort: 80
+        volumeMounts:
+        - mountPath: /tmp
+          name: tmp-volume
+      volumes:
+        - name: tmp-volume
+          emptyDir:
+            medium: Memory
+      nodeSelector:
+        beta.kubernetes.io/os: linux

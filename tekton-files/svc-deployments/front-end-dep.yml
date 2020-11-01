@@ -6,18 +6,23 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: front-end
+      name: front-end
   template:
     metadata:
       labels:
-        app: front-end
+        name: front-end
     spec:
       containers:
       - name: front-end
         image: bhanbashi/front-end:test
         resources:
+          limits:
+            cpu: 300m
+            memory: 1000Mi
           requests:
             cpu: 100m
-            memory: 100Mi
+            memory: 200Mi
         ports:
         - containerPort: 8079
+      nodeSelector:
+        beta.kubernetes.io/os: linux

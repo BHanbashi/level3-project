@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: wait-microservices
+spec:
+  inputs:
+    params:
+      - name: namespace
+        description:  the namespace where the services are running.
+      - name: serivceName
+        description: the name of the serivce
+    resources:
+      - name: level3-project
+        type: git
+  steps:
+    - name: wait-for-other-pods
+      image: lachlanevenson/k8s-kubectl
+      command: ["kubectl"]
+      args:
+        - "wait"
+        - "--namespace"
+        - "$(params.namespace)"
+        - "--for=condition=ready"
+        - "pods"
+        - "-l"
+        - "name=$(params.serivceName)"
+        - "--timeout=666s"

@@ -3,19 +3,31 @@ kind: Deployment
 metadata:
   name: catalogue
   labels:
-    app: catalogue
+    name: catalogue
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: catalogue
+      name: catalogue
   template:
     metadata:
       labels:
-        app: catalogue
+        name: catalogue
     spec:
       containers:
       - name: catalogue
         image: bhanbashi/catalogue
+        command: ["/app"]
+        args:
+        - -port=80
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
         ports:
         - containerPort: 80
+      nodeSelector:
+        beta.kubernetes.io/os: linux

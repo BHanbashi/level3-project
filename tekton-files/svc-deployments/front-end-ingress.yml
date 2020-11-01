@@ -1,7 +1,7 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: socks-ingress
+  name: front-end-ingress
   annotations:
     ingress.kubernetes.io/ssl-redirect: "false"
 spec:
@@ -11,4 +11,4 @@ spec:
       - path: /
         backend:
           serviceName: front-end
-          servicePort: 80
+          servicePort: 8079
