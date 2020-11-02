@@ -29,6 +29,7 @@
       }, 3000);
     });
 
+
     // TODO: Test that "Proceed to checkout" button is disabled when the cart is empty
 
     // access the catalogue
@@ -66,7 +67,6 @@
         });
       }, function() {
         test.pass("the checkout button is enabled");
-        this.click("button#orderButton");
       }, function() {
         test.fail("checkout button was not enabled");
       }, 3000);
@@ -74,13 +74,14 @@
 
     // actually checkout
     casper.then(function() {
+      this.click("button#orderButton");
       this.waitForText("My orders", function() {
         test.pass("user is taken to the orders page");
       }, function() {
-        console.log("dumping page screenshot as PNG")
-        var cap = casper.captureBase64("png");
-        console.log(cap);
-        console.log("DONE");
+       // console.log("dumping page screenshot as PNG")
+       // var cap = casper.captureBase64("png");
+       // console.log(cap);
+       // console.log("DONE");
         test.fail("user was not taken to the orders page");
       }, 3000);
     });
