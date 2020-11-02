@@ -81,11 +81,19 @@ spec:
     - name: serivceName
       value: "carts"
 
+
+  - name: e2e-test
+    taskRef:
+      name: e2e-test
+    runAfter:
+      - wait-pods-start
+
+
   - name: deploy-to-production
     taskRef:
       name: deploy-carts
     runAfter:
-    - wait-pods-start
+    - e2e-test
     workspaces:
     - name: source
       workspace: shared-workspace

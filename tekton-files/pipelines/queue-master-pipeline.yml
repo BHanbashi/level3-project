@@ -69,13 +69,30 @@ spec:
     - name: namespace
       value: "test"
 
-#  unit-test
+  - name: wait-pods-start
+    taskRef:
+      name: wait-pods-start
+    runAfter:
+      - deploy-to-test
+    params:
+    - name: namespace
+      value: "test"
+    - name: serivceName
+      value: "queue-master"
+
+  
+  - name: e2e-test
+    taskRef:
+      name: e2e-test
+    runAfter:
+      - wait-pods-start
+
 
   - name: deploy-to-production
     taskRef:
       name: deploy-queue-master
     runAfter:
-    - deploy-to-test
+    - e2e-test
     workspaces:
     - name: source
       workspace: shared-workspace

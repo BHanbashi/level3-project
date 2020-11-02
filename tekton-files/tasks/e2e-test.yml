@@ -4,12 +4,10 @@ metadata:
   name: e2e-test
   namespace: tekton-pipelines
 spec:
-  workspaces:
-  - name: source
   steps:
     - name: e2e-test
-      image: bhanbashi/e2e-test
+      image: "bhanbashi/e2e-test"
       command: ["/bin/sh"]
       args:
         - "-c"
-        - "/e2e/runner.sh"
+        - "/app/runner.sh"
