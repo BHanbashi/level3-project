@@ -70,11 +70,22 @@ spec:
     - name: namespace
       value: "test"
 
+  - name: wait-pods-start
+    taskRef:
+      name: wait-pods-start
+    runAfter:
+      - deploy-to-test
+    params:
+    - name: namespace
+      value: "test"
+    - name: serivceName
+      value: "carts"
+
   - name: deploy-to-production
     taskRef:
       name: deploy-carts
     runAfter:
-    - deploy-to-test
+    - wait-pods-start
     workspaces:
     - name: source
       workspace: shared-workspace

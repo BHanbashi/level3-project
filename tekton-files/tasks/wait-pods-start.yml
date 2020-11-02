@@ -1,17 +1,14 @@
 apiVersion: tekton.dev/v1alpha1
 kind: Task
 metadata:
-  name: wait-pods
+  name: wait-pods-start
+  namespace: tekton-pipelines
 spec:
-  inputs:
-    params:
-      - name: namespace
-        description:  the namespace where the services are running.
-      - name: serivceName
-        description: the name of the serivce
-    resources:
-      - name: level3-project
-        type: git
+  params:
+    - name: namespace
+    - name: serivceName
+      description: the name of the serivce
+
   steps:
     - name: wait-for-other-pods
       image: lachlanevenson/k8s-kubectl
@@ -24,4 +21,4 @@ spec:
         - "pods"
         - "-l"
         - "name=$(params.serivceName)"
-        - "--timeout=666s"
+        - "--timeout=900s"
