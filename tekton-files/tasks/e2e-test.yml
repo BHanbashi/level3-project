@@ -6,7 +6,7 @@ metadata:
 spec:
   steps:
     - name: e2e-test
-      image: "ozb96/e2e-test"
+      image: "bhanbashi/e2e-test"
       command: ["/bin/sh"]
       args:
         - "-c"
