@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: e2e-test
-  namespace: test
+  namespace: tekton-pipelines
 spec:
   steps:
     - name: e2e-test

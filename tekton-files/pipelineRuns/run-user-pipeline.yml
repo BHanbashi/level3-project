@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
   name: run-user-pipeline
-  namespace: test
+  namespace: tekton-pipelines
 spec:
   serviceAccountName: admin
   pipelineRef:
