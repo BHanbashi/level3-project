@@ -68,7 +68,7 @@ spec:
       workspace: shared-workspace
     params: 
     - name: namespace
-      value: "test"
+      value: "tekton-pipelines"
 
   - name: wait-pods-start
     taskRef:
@@ -77,7 +77,7 @@ spec:
       - deploy-to-test
     params:
     - name: namespace
-      value: "test"
+      value: "tekton-pipelines"
     - name: serivceName
       value: "orders"
 
