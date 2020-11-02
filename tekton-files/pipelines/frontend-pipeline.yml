@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: frontend-pipeline
-  namespace: test
+  namespace: tekton-pipelines
 spec:
   workspaces:
   - name: shared-workspace
