@@ -2,7 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: carts-pipeline
-  namespace: tekton-pipelines
+  namespace: test
 spec:
   workspaces:
   - name: shared-workspace
