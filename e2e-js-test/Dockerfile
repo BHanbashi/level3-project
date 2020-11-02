@@ -19,6 +19,6 @@ RUN curl -Ls https://github.com/dustinblackman/phantomized/releases/download/2.1
   rm -rf /tmp/*
 
 WORKDIR /app
-Run chmod +x ./runner.sh
 COPY . .
+RUN chmod +x /app/
 RUN npm install
