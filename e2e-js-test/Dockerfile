@@ -1,6 +1,6 @@
 FROM node:alpine
 
-RUN apk add make git curl jq
+RUN apk add make git curl jq bash
 ENV PYTHONUNBUFFERED=1
 RUN apk add --update --no-cache make git curl jq python3 && \
     ln -sf python3 /usr/bin/python
