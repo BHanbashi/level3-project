@@ -1,10 +1,3 @@
-## How to Run
--Clone this repo into /git folder in the sandbox instnce.  
--cd into  level3-project/tekton-files/  
--run "make up"
-
-
-
 # Saudi Digital Academy level 3 Final Project
 
 This is the final project (level 3 project) of the DevOps bootcamp. The aim of this project is to set up a near production-ready K8S platform hosting the [Weaveworks Shock Shop demo](https://github.com/microservices-demo). The k8s cluster builds, tests in a test environment and deploys the Sock shop demo app.
@@ -36,15 +29,15 @@ make Link
 ```
 
 ### How to Run
--Clone this repo into the target machine (local machine or live environment) (The following command assumes Debian-based distribution)
+- Clone this repo into the target machine (local machine or live environment) (The following command assumes Debian-based distribution)
 ```
 git clone https://github.com/BHanbashi/level3-project.git
 ```
--navigate into the tekton-files directory of this project
+- Navigate into the tekton-files directory of this project
 ```
 cd level3-project/tekton-files/
 ```
--run "make up"
+- Run "make up"
 ```
 make up
 ```
