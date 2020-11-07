@@ -1,15 +1,16 @@
+
 up: start-cluster install-platform set-namespace create-secret apply-resource apply-tasks apply-pipelines
 
 install-platform: namespaces install-cicd install-monitoring install-logging install-ingress
 
 down:
-	make down -f k8s-sandbox/Makefile
+	make down -f ../../k8s-sandbox/Makefile
 
 start-cluster:
-	make cluster-up logs repos -f k8s-sandbox/Makefile
+	make cluster-up logs repos -f ../../k8s-sandbox/Makefile
 
 namespaces:
-	kubectl apply -f k8s-sandbox/platform/namespaces/namespaces.yaml
+	kubectl apply -f ../../k8s-sandbox/platform/namespaces/namespaces.yaml
 
 install-ingress:
 	echo "Ingress: install" | tee -a output.log
@@ -28,19 +29,19 @@ install-monitoring: install-prometheus install-grafana
 
 install-prometheus:
 	echo "Monitoring: install-grafana" | tee -a output.log
-	helm install -n monitoring -f k8s-sandbox/platform/monitoring/prometheus-values.yaml prometheus prometheus-community/prometheus| tee -a output.log
+	helm install -n monitoring -f ../../k8s-sandbox/platform/monitoring/prometheus-values.yaml prometheus prometheus-community/prometheus| tee -a output.log
 
 install-grafana:
 	echo "Monitoring: install-grafana" | tee -a output.log
-	helm install grafana grafana/grafana -n monitoring -f k8s-sandbox/platform/monitoring/grafana-values.yaml | tee -a output.log
+	helm install grafana grafana/grafana -n monitoring -f ../../k8s-sandbox/platform/monitoring/grafana-values.yaml | tee -a output.log
 
 install-logging:
 	echo "Logging: install-elasticsearch" | tee -a output.log
-	helm install elasticsearch elastic/elasticsearch -n logging -f k8s-sandbox/platform/logging/elastic-values.yaml | tee -a output.log
+	helm install elasticsearch elastic/elasticsearch -n logging -f ../../k8s-sandbox/platform/logging/elastic-values.yaml | tee -a output.log
 	echo "Logging: install-fluent-bit" | tee -a output.log
-	helm install fluent-bit fluent/fluent-bit -n logging -f k8s-sandbox/platform/logging/fluent-values.yaml | tee -a output.log
+	helm install fluent-bit fluent/fluent-bit -n logging -f ../../k8s-sandbox/platform/logging/fluent-values.yaml | tee -a output.log
 	echo "Logging: install-kibana" | tee -a output.log
-	helm install kibana elastic/kibana -n logging -f k8s-sandbox/platform/logging/kibana-values.yaml | tee -a output.log
+	helm install kibana elastic/kibana -n logging -f ../../k8s-sandbox/platform/logging/kibana-values.yaml | tee -a output.log
 
 create-secret: login docker-secret
 
