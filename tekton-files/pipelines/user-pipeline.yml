@@ -94,7 +94,7 @@ spec:
     runAfter:
       - wait-pods-start
 
-- name: deploy-to-production
+  - name: deploy-catalogue-to-production
     taskRef:
       name: deploy-catalogue
     runAfter:
@@ -106,7 +106,7 @@ spec:
     - name: namespace
       value: "production"
 
-- name: deploy-to-production
+  - name: deploy-carts-to-production
     taskRef:
       name: deploy-carts
     runAfter:
@@ -118,7 +118,7 @@ spec:
     - name: namespace
       value: "production"
 
-- name: deploy-to-production
+  - name: deploy-orders-to-production
     taskRef:
       name: deploy-orders
     runAfter:
@@ -130,7 +130,7 @@ spec:
     - name: namespace
       value: "production"
 
-- name: deploy-to-production
+  - name: deploy-queue-master-to-production
     taskRef:
       name: deploy-queue-master
     runAfter:
@@ -142,7 +142,7 @@ spec:
     - name: namespace
       value: "production"
 
-- name: deploy-to-production
+  - name: deploy-shipping-to-production
     taskRef:
       name: deploy-shipping
     runAfter:
@@ -154,7 +154,7 @@ spec:
     - name: namespace
       value: "production"
 
-- name: deploy-to-production
+  - name: deploy-user-to-production
     taskRef:
       name: deploy-user
     runAfter:
@@ -166,7 +166,7 @@ spec:
     - name: namespace
       value: "production"
 
-- name: deploy-to-production
+  - name: deploy-frontend-to-production
     taskRef:
       name: deploy-frontend
     runAfter:
@@ -178,7 +178,7 @@ spec:
     - name: namespace
       value: "production"
 
-- name: deploy-to-production
+  - name: deploy-payment-to-production
     taskRef:
       name: deploy-payment
     runAfter:
