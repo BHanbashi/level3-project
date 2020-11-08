@@ -29,7 +29,7 @@ make Link
 ```
 
 ### How to Run
-- Clone this repo into the target machine (local machine or live environment) (The following command assumes Debian-based distribution)
+- Clone this repo into the target machine (local machine or live environment) (The following commands assumes Debian-based distribution)
 ```
 git clone https://github.com/BHanbashi/level3-project.git
 ```
@@ -42,11 +42,11 @@ cd level3-project/tekton-files/
 make up
 ```
 
-the k8s cluster will be created, then the needed namespaces and tools will be installed inside the cluster, finally the demp app will be built and released in docker and then e2e tests will run. If successful, the demo app will be deployed inside the cluster.
+the k8s cluster will be created, then the needed namespaces and tools will be installed inside the cluster. Finally, the demo app will be built using docker, released into docker hub as docker images and then e2e tests will start in 'test' environment. If successful, the demo app will be deployed inside the cluster into production environment.
 
 ## Running the tests
 
-Unit tests are run as part of the build process as each micro-service is built using Docker as a Docker image. no manual steps are needed to run unit tests.
+Unit tests are applied as part of the build process as each micro-service is built using Docker as a Docker image. no manual steps are needed to run unit tests.
 
 ### Break down into end to end tests
 
