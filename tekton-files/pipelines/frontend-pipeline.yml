@@ -89,8 +89,79 @@ spec:
     runAfter:
       - wait-pods-start
 
+- name: deploy-to-production
+    taskRef:
+      name: deploy-catalogue
+    runAfter:
+    - e2e-test
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: namespace
+      value: "production"
 
-  - name: deploy-to-production
+- name: deploy-to-production
+    taskRef:
+      name: deploy-carts
+    runAfter:
+    - e2e-test
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: namespace
+      value: "production"
+
+- name: deploy-to-production
+    taskRef:
+      name: deploy-orders
+    runAfter:
+    - e2e-test
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: namespace
+      value: "production"
+
+- name: deploy-to-production
+    taskRef:
+      name: deploy-queue-master
+    runAfter:
+    - e2e-test
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: namespace
+      value: "production"
+
+- name: deploy-to-production
+    taskRef:
+      name: deploy-shipping
+    runAfter:
+    - e2e-test
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: namespace
+      value: "production"
+
+- name: deploy-to-production
+    taskRef:
+      name: deploy-user
+    runAfter:
+    - e2e-test
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
+    - name: namespace
+      value: "production"
+
+- name: deploy-to-production
     taskRef:
       name: deploy-frontend
     runAfter:
@@ -98,6 +169,18 @@ spec:
     workspaces:
     - name: source
       workspace: shared-workspace
-    params: 
+    params:
+    - name: namespace
+      value: "production"
+
+- name: deploy-to-production
+    taskRef:
+      name: deploy-payment
+    runAfter:
+    - e2e-test
+    workspaces:
+    - name: source
+      workspace: shared-workspace
+    params:
     - name: namespace
       value: "production"
