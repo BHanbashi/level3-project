@@ -13,19 +13,19 @@ These tools are needed in order to be able to run this project.
 
 [Docker](https://www.docker.com/get-started)
 ```
-Docker Link
+curl -fsSL https://get.docker.com -o get-docker.sh
 ```
 [k3d](https://k3d.io/)
 ```
-k3d Link
+curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash
 ```
 [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git/)
 ```
-git link
+sudo apt install git-all
 ```
 [Make](https://www.gnu.org/software/make/)
 ```
-make Link
+sudo apt-get update -y && sudo apt-get install -y make
 ```
 
 ### How to Run
