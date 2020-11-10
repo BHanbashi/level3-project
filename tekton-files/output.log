@@ -1,7 +1,7 @@
 cicd: install
 Monitoring: install-grafana
 NAME: prometheus
-LAST DEPLOYED: Sun Nov  8 07:54:50 2020
+LAST DEPLOYED: Tue Nov 10 05:43:53 2020
 NAMESPACE: monitoring
 STATUS: deployed
 REVISION: 1
@@ -40,7 +40,7 @@ For more information on running Prometheus, visit:
 https://prometheus.io/
 Monitoring: install-grafana
 NAME: grafana
-LAST DEPLOYED: Sun Nov  8 07:54:52 2020
+LAST DEPLOYED: Tue Nov 10 05:43:55 2020
 NAMESPACE: monitoring
 STATUS: deployed
 REVISION: 1
@@ -81,7 +81,7 @@ NOTES:
 #################################################################################
 Logging: install-elasticsearch
 NAME: elasticsearch
-LAST DEPLOYED: Sun Nov  8 07:54:54 2020
+LAST DEPLOYED: Tue Nov 10 05:43:57 2020
 NAMESPACE: logging
 STATUS: deployed
 REVISION: 1
@@ -92,7 +92,7 @@ NOTES:
   $ helm test elasticsearch --cleanup
 Logging: install-fluent-bit
 NAME: fluent-bit
-LAST DEPLOYED: Sun Nov  8 07:54:56 2020
+LAST DEPLOYED: Tue Nov 10 05:43:59 2020
 NAMESPACE: logging
 STATUS: deployed
 REVISION: 1
@@ -104,7 +104,7 @@ echo "curl http://127.0.0.1:2020 for Fluent Bit build information"
 kubectl --namespace logging port-forward $POD_NAME 2020:2020
 Logging: install-kibana
 NAME: kibana
-LAST DEPLOYED: Sun Nov  8 07:54:57 2020
+LAST DEPLOYED: Tue Nov 10 05:44:00 2020
 NAMESPACE: logging
 STATUS: deployed
 REVISION: 1
